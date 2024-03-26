@@ -1,0 +1,72 @@
+@import url(https://fonts.googleapis.com/css?family=Saira+Stencil+One);
+
+.imgStyles{
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    transition: 0.5s all ease-in-out;
+}
+
+.imgBack{
+
+}
+.overlay{
+    background-color: white;
+    height: 100vh;
+    width: 100vw;
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+
+.overlay1{
+    position: absolute;
+    z-index: 1;
+}
+.text1 {
+    margin-top: 350px;
+    text-align: center;
+    font-size: 50px;
+
+}
+.text1
+.styledText{
+    width: 100px;
+    height: 800px;
+    background: none;
+    position: relative;
+    font-family: "Saira Stencil One", cursive!important;
+}
+.styledText video {
+    /* position: absolute;
+    top: 0;
+    left: 0; */
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+.styledText  h2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    margin: 0;
+    font-weight: 400!important;
+    font-size: 50px!important;
+    text-transform: uppercase;
+    background-color: #ffffff!important;
+    mix-blend-mode: screen;
+  }
