@@ -26,7 +26,7 @@ const Page = () => {
         setInterval(() => {
             detect(net);
             // console.log(canvasRef.current.toDataURL());
-        }, 50000 );
+        }, 100 );
     };
 
     const detect = async (net) => {

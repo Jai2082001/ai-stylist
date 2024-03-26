@@ -2648,33 +2648,42 @@ let arrayCompare2 = [];
 let index = 0
 
 // Triangle drawing method
-const drawPath = (ctx, points, closePath) => {
+const drawPath = (ctx, data, closePath) => {
     const region = new Path2D();
-    let x1, x2, x3, y1, y2, y3;
-    x1 = points[0][0]
-    y1 = points[0][1]
-    x2 = points[1][0]
-    y2 = points[1][1]
-    x3 = points[2][0]
-    y3 = points[2][1]
+    // let x1, x2, x3, y1, y2, y3;
+    // x1 = points[0][0]
+    // y1 = points[0][1]
+    // x2 = points[1][0]
+    // y2 = points[1][1]
+    // x3 = points[2][0]
+    // y3 = points[2][1]
 
-    let area = 0.5 * ((x1 * y2) + (x2 * y3) + (x3 * y1) - (x1 * y3) - (x2 * y1) - (x3 * y2))
+    // let area = 0.5 * ((x1 * y2) + (x2 * y3) + (x3 * y1) - (x1 * y3) - (x2 * y1) - (x3 * y2))
 
-    if (area < 0) {
-        area = area * -1;
-    }
+    // if (area < 0) {
+    //     area = area * -1;
+    // }
+    let points = [];
+    
+    data.map((item)=>{
+        points.push(item.coordinates);
+    })
+    
+    // console.log(points)
+    console.log(data[0])
+    region.moveTo(data[0].coordinates[0], data[0].coordinates[1]);
 
 
+    for (let i = 0; i < data.length; i++) {
+       
+        const point = data[i]
+        console.log(point) 
+        
+        region.lineTo(point.coordinates[0], point.coordinates[1]);
 
-    region.moveTo(points[0][0], points[0][1]);
-
-
-    for (let i = 1; i < points.length; i++) {
-        const point = points[i];
-        region.lineTo(point[0], point[1]);
-
-
-        ctx.fillText(index, point[0], point[1])
+        ctx.font = '10px sans serif'
+        ctx.fillStyle = "red";
+        ctx.fillText(point.index, point.coordinates[0], point.coordinates[1])
     }
 
     if (closePath) {
@@ -2691,7 +2700,7 @@ export const drawMesh = (predictions, ctx) => {
     if (predictions.length > 0) {
         predictions.forEach((prediction) => {
             const keypoints = prediction.scaledMesh;
-            console.log(TRIANGULATION.length / 3);
+            // console.log(TRIANGULATION.length / 3);
             let i;
             //  Draw Triangles
 
@@ -2714,7 +2723,20 @@ export const drawMesh = (predictions, ctx) => {
 
 
             // Draw Dots
-            let leftCheek = [];
+            let leftCheek1 = [];
+            let leftCheek2 = [];
+            let leftCheek3 = [];
+            let leftCheek4 = [];
+            let leftCheek5 = [];
+            let leftCheek6 = [];
+            let leftCheek7 = [];
+            let leftCheek8 = [];
+            let leftCheek9 = [];
+            let leftCheek10 = [];
+
+
+
+
 
             for (let i = 0; i < keypoints.length; i++) {
                 const x = keypoints[i][0];
@@ -2723,9 +2745,17 @@ export const drawMesh = (predictions, ctx) => {
 
                 ctx.beginPath();
                 ctx.font = "5px serif";
-                if(i == 162 || i == 124 || i == 137){
-                    leftCheek.push(keypoints[i])
+
+
+                if(i == 342 || i == 359 || i ==  356 || i == 384){
+                    leftCheek2.push({coordinates: keypoints[i], index: i});
                 }
+
+                if(i == 359 || i == 356 || i== 352 || i == 339){
+                    leftCheek1.push({coordinates: keypoints[i], index: i});
+                }
+
+
 
 
                 // ctx.fillText(i, x, y);
@@ -2733,9 +2763,14 @@ export const drawMesh = (predictions, ctx) => {
                 ctx.fillStyle = "black";
                 ctx.fill();
             }
-            console.log(leftCheek)
+            // console.log(leftCheek1)
 
-            drawPath(ctx, leftCheek, true )
+            // drawPath(ctx, leftCheek1, true )
+        
+            drawPath(ctx, leftCheek2, true )
+            drawPath(ctx, leftCheek1, true)
+
+
         });
     }
 };
