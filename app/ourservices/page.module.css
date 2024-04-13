@@ -1,0 +1,44 @@
+.parentDiv{
+    background-color: white;
+    min-width: 100vw;
+    min-height: 100vh;   
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    color: white;
+}
+.serviceDiv1{
+    background-color: black;
+    border: 1px solid white;
+    padding: 10px;
+    min-height: 40vh;
+    min-width: 25vw; 
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+.parentDiv a{
+    text-decoration: none;
+    
+    color: white;
+}
+
+.subParent{
+    display: flex;
+    flex-direction: column;   
+}
+
+.serviceDiv1:hover p{
+    animation: animation 1s ease-in-out infinite    
+}
+
+@keyframes animation {
+    from{
+        transform: none;
+    }
+    to{
+        transform: translateY(-10px);
+    }   
+}

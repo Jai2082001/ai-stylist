@@ -18,6 +18,9 @@ export default function Home() {
             />
           </video>
           <h2>MEET VIRI<br></br>YOUR VIRTUAL ASSITANT</h2>
+          <div className={styles.servicesDiv}>
+    
+          </div>
         </div>
       </div>
 
