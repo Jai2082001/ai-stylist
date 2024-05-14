@@ -1,0 +1,41 @@
+.parentDiv{
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.profileDiv{
+    border: 3px solid whitesmoke;    
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;  
+}
+.inputDiv{
+    padding: 20px;
+    border-right: 1px solid whitesmoke;      
+}
+
+.inputDiv input{
+    border: none;
+    border-bottom: 2px solid black;
+    outline: none;   
+}
+
+.profile{
+    margin: 10px 0px;
+}
+
+.outsideParty{
+    padding: 10px;
+}
+
+.parentDiv button {
+    background: none;
+    padding: 5px 10px;
+    color: black;
+    border: 1px solid black;
+    cursor: pointer;
+}

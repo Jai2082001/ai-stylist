@@ -1,3 +1,5 @@
+import { zeros } from "@tensorflow/tfjs";
+
 //  Triangulation sets of three
 export const TRIANGULATION = [
     127,
@@ -2664,26 +2666,24 @@ const drawPath = (ctx, data, closePath) => {
     //     area = area * -1;
     // }
     let points = [];
-    
-    data.map((item)=>{
+
+    data.map((item) => {
         points.push(item.coordinates);
     })
-    
+
     // console.log(points)
-    console.log(data[0])
     region.moveTo(data[0].coordinates[0], data[0].coordinates[1]);
 
 
     for (let i = 0; i < data.length; i++) {
-       
+
         const point = data[i]
-        console.log(point) 
-        
+
         region.lineTo(point.coordinates[0], point.coordinates[1]);
 
-        ctx.font = '10px sans serif'
-        ctx.fillStyle = "red";
-        ctx.fillText(point.index, point.coordinates[0], point.coordinates[1])
+        // ctx.font = '10px sans serif'
+        // ctx.fillStyle = "red";
+        // ctx.fillText(point.index, point.coordinates[0], point.coordinates[1])
     }
 
     if (closePath) {
@@ -2692,47 +2692,108 @@ const drawPath = (ctx, data, closePath) => {
     ctx.strokeStyle = "grey";
 
     ctx.stroke(region);
-    
+
 };
+
+
+// Calculating area
+function calculatePolygonArea(vertices) {
+    let area = 0;
+    const n = vertices.length;
+
+    for (let i = 0; i < n; i++) {
+        const j = (i + 1) % n;
+        area += vertices[i].coordinates[0] * vertices[j].coordinates[1];
+        area -= vertices[j].coordinates[0] * vertices[i].coordinates[1];
+    }
+
+    area = Math.abs(area) / 2;
+    return area;
+}
+
+
 
 // Drawing Mesh
 export const drawMesh = (predictions, ctx) => {
+    let rightCheekFunctional = []
+    let rightJawlineFunctional = []
+    let foreHeadFunctional = [];
+    let leftCheekFunctional = [];
+    let leftJawLineFunctional = [];
+    let mouthFunctional = [];
+    let leftEyeFunctional = [];
+    let rightEyeFunctional = [];
+    let noseFunctional = [];
     if (predictions.length > 0) {
         predictions.forEach((prediction) => {
             const keypoints = prediction.scaledMesh;
-            // console.log(TRIANGULATION.length / 3);
             let i;
             //  Draw Triangles
 
-
-            // for (i = 0; i < TRIANGULATION.length / 3; i++) {
-            //     // Get sets of three keypcoints for the triangle
-
-            //     const points = [
-            //         TRIANGULATION[i * 3],
-            //         TRIANGULATION[i * 3 + 1],
-            //         TRIANGULATION[i * 3 + 2],
-            //     ].map((index) =>    keypoints[index]);
-
-
-            //     //  Draw triangle
-            //     drawPath(ctx, points, true,);
-
-
-            // }
-
-
             // Draw Dots
-            let leftCheek1 = [];
-            let leftCheek2 = [];
-            let leftCheek3 = [];
-            let leftCheek4 = [];
-            let leftCheek5 = [];
-            let leftCheek6 = [];
-            let leftCheek7 = [];
-            let leftCheek8 = [];
-            let leftCheek9 = [];
-            let leftCheek10 = [];
+            let rightCheek = [359, 356, 454, 323, 361, 288, 287, 410, 322, 391, 393, 327, 358, 371, 329, 349, 451, 252];
+            let rightJawline = [287, 288, 397, 365, 379, 378, 400, 377, 152, 175, 199, 200, 18, 406, 424, 273];
+            let forehead = [226, 35, 143, 34, 127, 162, 21, 54, 103, 67, 109, 10, 338, 297, 332, 284, 251, 389, 368, 383, 353, 342, 445, 444, , 443, 442, 441, 413, 417, 168, 193, 189, 221, 222, 223, 224, 225, 113];
+            let mouth = [164, 167, 165, 92, 186, 57, 43, 106, 182, 83, 18, 313, 406, 335, 273, 287, 410, 322, 391, 393];
+            let leftCheek = [127, 234, 93, 132, 58, 57, 186, 92, 165, 167, 98, 129, 142, 100, 120, 231, 22, 23, 24, 110, 25, 130, 226, 35, 143, 34];
+            let leftJawline = [58, 172, 136, 150, 149, 176, 148, 152, 175, 199, 200, 18, 83, 182, 106, 43, 57];
+            let leftEye = [189, 221, 222, 223, 224, 225, 113, 130, 25, 110, 24, 23, 22, 26, 112, 243];
+            let rightEye = [413, 441, 442, , 443, 444, 445, 342, 359, 255, 339, 254, 253, 252, 256, 341, 463]
+            let nose = [22, 231, 120, 100, 142, 129, 98, 167, 164, 393, 327, 358, 371, 329, 349, 451, 252];
+
+
+            ctx.beginPath();
+            ctx.font = '5px serif';
+
+
+            rightCheek.forEach((index) => {
+                rightCheekFunctional.push({ coordinates: keypoints[index], index: index })
+            })
+            rightJawline.forEach((index) => {
+                rightJawlineFunctional.push({ coordinates: keypoints[index], index: index })
+            })
+            forehead.forEach((index) => {
+                foreHeadFunctional.push({ coordinates: keypoints[index], index: index });
+            })
+            leftCheek.forEach((index) => {
+                leftCheekFunctional.push({ coordinates: keypoints[index], index: index });
+            })
+            leftJawline.forEach((index) => {
+                leftJawLineFunctional.push({ coordinates: keypoints[index], index: index })
+            })
+            mouth.forEach((index) => {
+                mouthFunctional.push({ coordinates: keypoints[index], index: index })
+            })
+            leftEye.forEach((index) => {
+                leftEyeFunctional.push({ coordinates: keypoints[index], index: index });
+            })
+            rightEye.forEach((index) => {
+                rightEyeFunctional.push({ coordinates: keypoints[index], index: index })
+            })
+            nose.forEach((index) => {
+                noseFunctional.push({ coordinates: keypoints[index], index: index });
+            })
+
+            drawPath(ctx, rightCheekFunctional, true)
+            drawPath(ctx, rightJawlineFunctional, true)
+            drawPath(ctx, foreHeadFunctional, true);
+            drawPath(ctx, leftCheekFunctional, true);
+            drawPath(ctx, leftJawLineFunctional, true);
+            drawPath(ctx, mouthFunctional, true);
+            drawPath(ctx, leftEyeFunctional, true);
+            drawPath(ctx, rightEyeFunctional, true);
+            drawPath(ctx, noseFunctional, true);
+            console.log('RightCheek', calculatePolygonArea(rightCheekFunctional));
+            console.log('Right Jaw', calculatePolygonArea(rightJawlineFunctional));
+            console.log('Forehead', calculatePolygonArea(foreHeadFunctional));
+            console.log('Left Jawline', calculatePolygonArea(leftJawLineFunctional));
+            console.log('Left Cheek', calculatePolygonArea(leftCheekFunctional));
+            console.log('Nose', calculatePolygonArea(noseFunctional));
+            console.log('Left Eye', calculatePolygonArea(leftEyeFunctional));
+            console.log('Right Eye', calculatePolygonArea(rightEyeFunctional));
+            console.log('Mouth', calculatePolygonArea(mouthFunctional))
+
+
 
 
 
@@ -2747,30 +2808,41 @@ export const drawMesh = (predictions, ctx) => {
                 ctx.font = "5px serif";
 
 
-                if(i == 342 || i == 359 || i ==  356 || i == 384){
-                    leftCheek2.push({coordinates: keypoints[i], index: i});
-                }
+                // if(i == 288 || i == 254 || i == 359 || i ==  356 || i == 393 || i == 287 ){
+                //     leftCheek2.push({coordinates: keypoints[i], index: i});
+                // }
 
-                if(i == 359 || i == 356 || i== 352 || i == 339){
-                    leftCheek1.push({coordinates: keypoints[i], index: i});
-                }
+                // // if( i == 393 || i == 288 ||   i == 152 || i == 378 || i == 335){
+                // //     leftCheek1.push({coordinates: keypoints[i], index: i});
+                // // }
 
 
 
 
                 // ctx.fillText(i, x, y);
-                  ctx.arc(x, y, 1 /* radius */, 0, 3 * Math.PI);
+                ctx.arc(x, y, 1 /* radius */, 0, 3 * Math.PI);
                 ctx.fillStyle = "black";
                 ctx.fill();
             }
-            // console.log(leftCheek1)
+            // // console.log(leftCheek1)
 
-            // drawPath(ctx, leftCheek1, true )
-        
-            drawPath(ctx, leftCheek2, true )
-            drawPath(ctx, leftCheek1, true)
+            // // drawPath(ctx, leftCheek1, true )
+
+            // drawPath(ctx, leftCheek2, true )
+            // // drawPath(ctx, leftCheek1, true)
 
 
         });
+    }
+    return {
+        'Right Cheek': calculatePolygonArea(rightCheekFunctional),
+        'Right Jaw': calculatePolygonArea(rightJawlineFunctional),
+        'Forehead': calculatePolygonArea(foreHeadFunctional),
+        'Left Jawline': calculatePolygonArea(leftJawLineFunctional),
+        'Left Cheek': calculatePolygonArea(leftCheekFunctional),
+        'Nose': calculatePolygonArea(noseFunctional),
+        'Left Eye': calculatePolygonArea(leftEyeFunctional),
+        'Right Eye': calculatePolygonArea(rightEyeFunctional),
+        'Mouth': calculatePolygonArea(mouthFunctional)
     }
 };

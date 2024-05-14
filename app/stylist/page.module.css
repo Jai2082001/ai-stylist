@@ -1,0 +1,22 @@
+.parentDiv{
+    position: relative;
+    min-height: 100vh;
+}
+
+.captureBtn{
+    background-color: black;
+    color: white;
+    padding: 10px;
+    position: absolute;
+    top: 500px;
+    left: 47%;
+    text-align: center;
+
+}   
+.outlay{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 0;
+}

@@ -1,0 +1,16 @@
+.header{
+    background-color: black;
+    color: white;
+    padding: 20px;
+}
+.subHeader{
+    display: flex;
+    justify-content: space-between;
+}
+.functions{
+    display: flex;
+}
+.functions div{
+    margin: 0px 20px;
+    cursor: pointer;
+}

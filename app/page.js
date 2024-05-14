@@ -1,7 +1,13 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import backgroundImage from '../public/background/background1 (1).jpg'
 import Background from "@/components/BackgroundImage";
+import Background1 from '@/public/background/background1.jpg';
+import Background2 from "@/public/background/Backgrounds.jpg";
+import Background3 from "@/public/background/background.jpg";
 import Navbar from "@/components/Navbar";
+import Link from "next/link";
+
 
 export default function Home() {
   return (
@@ -23,7 +29,32 @@ export default function Home() {
           </div>
         </div>
       </div>
-
+      <div className={styles.parentDiv}>
+            <div  className={styles.subParent}>
+                <Link href='/ourservices/updatewardrobe' >
+                    <div  className={styles.serviceDiv1} style={{backgroundImage: `url("${Background3.src}")`}}>
+                        <p>Update your wardrobe.</p>
+                    </div>
+                </Link>
+                <Link href='/ourservices/updatewardrobe'>
+                    <div className={styles.serviceDiv1} style={{backgroundImage: `url("${Background2.src}")`}}>
+                        <p>Scan yourself and get something new</p>
+                    </div>
+                </Link>
+            </div>
+            <div className={styles.subParent} >
+                <Link href='/ourservices/updatewardrobe'>
+                    <div className={styles.serviceDiv1} style={{backgroundImage: `url("${Background1.src}")`}}>
+                        <p>Your todays wardrobe can be !!</p>
+                    </div>
+                </Link>
+                <Link href='/ourservices/updatewardrobe'>
+                    <div className={styles.serviceDiv1} style={{backgroundImage: `url("${backgroundImage.src}")`}}>
+                        <p>New Additions !!</p>
+                    </div>
+                </Link>
+            </div>
+        </div>
     </main>
   );
 }

@@ -1,6 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Saira+Stencil+One);
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap');
 
-.imgStyles{
+.imgStyles {
     width: 100vw;
     height: 100vh;
     background-size: cover;
@@ -13,10 +14,9 @@
     transition: 0.5s all ease-in-out;
 }
 
-.imgBack{
+.imgBack {}
 
-}
-.overlay{
+.overlay {
     background-color: white;
     height: 100vh;
     width: 100vw;
@@ -28,24 +28,43 @@
 }
 
 
-.overlay1{
+.overlay1 {
     position: absolute;
     z-index: 1;
 }
+
 .text1 {
     margin-top: 350px;
     text-align: center;
     font-size: 50px;
-
 }
-.text1
-.styledText{
+
+.text2 {
+    position: absolute;
+    top: 140%;
+    left: -48%;
+    color: white;
+    font-size: 60px;
+    font-family: "Cedarville Cursive", cursive;
+    font-weight: 600;
+    animation: move 4s infinite;;
+    font-style: normal;
+    
+}
+
+
+.text2 {
+    width: 800px;
+}
+
+.text1 .styledText {
     width: 100px;
     height: 800px;
     background: none;
     position: relative;
-    font-family: "Saira Stencil One", cursive!important;
+    font-family: "Saira Stencil One", cursive !important;
 }
+
 .styledText video {
     /* position: absolute;
     top: 0;
@@ -53,8 +72,9 @@
     width: 200px;
     height: 200px;
     object-fit: cover;
-  }
-.styledText  h2 {
+}
+
+.styledText h2 {
     position: absolute;
     top: 0;
     left: 0;
@@ -64,9 +84,32 @@
     width: 200px;
     height: 200px;
     margin: 0;
-    font-weight: 400!important;
-    font-size: 50px!important;
+    font-weight: 400 !important;
+    font-size: 50px !important;
     text-transform: uppercase;
-    background-color: #ffffff!important;
+    background-color: #ffffff !important;
     mix-blend-mode: screen;
-  }
+}
+
+@keyframes move {
+    25% {
+        transform: translatey(-5.8vmin);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translatey(-20vmin);
+    }
+
+    75% {
+        transform: translatey(-31.5vmin);
+    }
+
+    90%{
+        transform: translatey(-51.5vmin);
+
+    }
+    100%{
+        transform: translatey();
+    }
+}

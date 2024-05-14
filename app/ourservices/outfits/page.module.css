@@ -1,0 +1,32 @@
+.Div{
+    text-align: center;
+}
+.parentDiv{
+    display: flex;    
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 15px 0px;
+}
+.parentDiv>div{
+    margin: 10px;
+}
+.dominantColor{
+    text-align: center;
+    width: 100%;
+}
+.buttonPar{
+    display: flex;
+    justify-content: center;
+}
+.buttonPar button{
+    margin: 10px;
+}
+.outfits{
+    display: flex;
+    justify-content: center;
+}
+.parDiv{
+    background-color: whitesmoke;
+    padding: 20px;
+    border-radius: 8px;
+}

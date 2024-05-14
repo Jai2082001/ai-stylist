@@ -1,0 +1,69 @@
+.uploadCamera{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    padding: 20px 0px;
+    min-height: 100vh;
+}
+.uploadCamera p{
+    font-size: 25px;
+}
+
+.jeansFrame, .dressFrame, .coatFrame, .shirtFrame{
+    position: relative;
+    height: 510px;
+    width: 680px;
+    overflow: hidden;
+}
+.jeansFrame img, .dressFrame img, .coatFrame img, .shirtFrame img{
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    height: 480px;
+    width: 640px;
+}
+
+.dressFrame img {
+    top: -80px;
+    height: 550px;
+}
+
+.optionsDiv{
+    display: flex;  
+    margin: 10px 0px; 
+}
+.option{
+    padding: 20px;
+    color: white;
+    border: 1px solid white;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+}
+.option:hover{
+    background-color: white !important;
+    color: black;
+}
+.captureBtn{
+    cursor: pointer;
+    padding: 10px;
+    
+    transition: 0.3s all ease-in-out;   
+}
+.captureBtn:hover{
+    background-color: black;
+    color: white;
+}
+.positionBackground{
+    position: relative;   
+}
+.outlay{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.captureBtn{
+    border: 2px solid black;
+}
