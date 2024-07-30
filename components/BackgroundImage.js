@@ -55,6 +55,7 @@ const Background = () => {
                     <p className={classes.before}>.</p>
                 </div>
                 <Navbar></Navbar>
+                
                 {/* <div className={classes.imgBack} , width: '100%', height: '100%'}}> </div> */}
 
                 <div className={classes.text1}>

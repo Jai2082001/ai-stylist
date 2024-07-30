@@ -1,4 +1,4 @@
-import LoadingGif from '@/public/LoadingScreen.gif'
+import LoadingGif from '../public/LoadingScreen.gif'
 import classes from './Loading.module.css';
 import Image from 'next/image';
 

@@ -2,16 +2,16 @@
 
 import { useEffect, useState } from 'react'
 import classes from './page.module.css'
-import { displayWardrobe, MatchTheWardrobe } from '@/lib/wardrobeactions'
-import { hslToRgb, findBestComplementingColor } from '@/lib/matchingColor';
-import Loading from '@/components/Loading';
-
+import { displayWardrobe, dominantColorBasedOnId, MatchTheWardrobe } from '../../../lib/wardrobeactions'
+import { getServerSession } from 'next-auth'
+import { resolveValue } from 'react-hot-toast'
 
 const MatchingOutfits = () => {
 
     const [records, changeRecords] = useState(false);
     const [page, changePage] = useState('outfits');
     const [outfits, changeOutfits] = useState(false);
+
 
     useEffect(() => {
         const promise = asyncEffectFunction();
@@ -21,7 +21,7 @@ const MatchingOutfits = () => {
             let tshirt = [];
             let jacket = [];
             let pullover = [];
-
+            console.log(resolve)
             resolve.totalItems.map((single) => {
                 if (single.type == 'Trouser') {
                     trousers.push(single);
@@ -37,10 +37,7 @@ const MatchingOutfits = () => {
                 }
             })
             changeOutfits(resolve.outfitsMade);
-
-
             changeRecords({ pullover: pullover, trousers: trousers, shirt: shirt, jacket: jacket, tshirt: tshirt })
-
         })
     }, [])
 
@@ -54,10 +51,19 @@ const MatchingOutfits = () => {
 
         return max;
     }
+    const asyncDominantFunc = (id) => {
+        return dominantColorBasedOnId(id)
+    }
 
     const asyncEffectFunction = async () => {
         const array = await displayWardrobe();
-        const matchedOutfits = await MatchTheWardrobe()
+        for (let i = 0; i < array.length; i++) {
+            array[i].dominantColors = await dominantColorBasedOnId(array[i].dominantColorId);
+        }
+
+        const matchedOutfits = await MatchTheWardrobe(array);
+
+        
         return { totalItems: array, outfitsMade: matchedOutfits };
     }
 
@@ -73,7 +79,7 @@ const MatchingOutfits = () => {
                         outfits.map((singleRecord, idx) => {
                             return (
                                 <div className={classes.parDiv}>
-                                <p>Outfit Number {idx + 1}</p>
+                                    <p>Outfit Number {idx + 1}</p>
                                     <div className={classes.outfits}>
 
                                         {singleRecord.upper &&
@@ -120,7 +126,7 @@ const MatchingOutfits = () => {
                             <div className={classes.parentDiv}>
                                 {
                                     records.trousers.map((element, idx) => {
-
+                                        console.log(element)
 
                                         return (
 
@@ -144,6 +150,7 @@ const MatchingOutfits = () => {
                             <div className={classes.parentDiv}>
                                 {
                                     records.tshirt.map((element, idx) => {
+
 
                                         return (
 

@@ -1,17 +1,22 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import backgroundImage from '../public/background/background1 (1).jpg'
-import Background from "@/components/BackgroundImage";
-import Background1 from '@/public/background/background1.jpg';
-import Background2 from "@/public/background/Backgrounds.jpg";
-import Background3 from "@/public/background/background.jpg";
-import Navbar from "@/components/Navbar";
+import Background from "../components/BackgroundImage";
+import Background1 from '../public/background/background1.jpg';
+import Background2 from "../public/background/Backgrounds.jpg";
+import Background3 from "../public/background/background.jpg";
 import Link from "next/link";
+import { getServerSession } from "next-auth";
 
 
-export default function Home() {
+export default async function Home() {
+
+  const session = await getServerSession();
+
+
   return (
     <main className={styles.main}>
+
       <Background>
 
       </Background>
@@ -25,7 +30,7 @@ export default function Home() {
           </video>
           <h2>MEET VIRI<br></br>YOUR VIRTUAL ASSITANT</h2>
           <div className={styles.servicesDiv}>
-    
+      
           </div>
         </div>
       </div>

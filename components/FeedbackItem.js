@@ -1,17 +1,17 @@
 'use client'
 
 import classes from './Feedback.module.css'
-import LoadingGIF from "@/public/LoadingScreen.gif";
+import LoadingGIF from "../public/LoadingScreen.gif";
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import { changeWardrobeProfile } from '@/lib/wardrobeactions';
-import { addWardrobeProfile } from '@/lib/wardrobeactions';
-
+import { addWardrobeProfile } from '../lib/wardrobeactions';
+import { useSession } from 'next-auth/react';
 const Feedback = ({ changeFeedback, data }) => {
 
 
     const [color, changeColor] = useState(`#000`);
-
+    const userData  = useSession();
+    console.log(userData)
     useEffect(() => {
         if (data) {
             changeColor(rgbToHex(data.dominantColors.red, data.dominantColors.green, data.dominantColors.blue));
@@ -48,7 +48,7 @@ const Feedback = ({ changeFeedback, data }) => {
 
     const registerBtn = () => {
 
-        addWardrobeProfile({ profileId: '001', type: clothRef.current.value, image: data.image, dominantColors: hexToRgb(color) })
+        console.log(addWardrobeProfile({ profileId: userData.data.user.email, type: clothRef.current.value, image: data.image, dominantColors: hexToRgb(color) }))
         changeFeedback(false)
     }
 

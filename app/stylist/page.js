@@ -6,8 +6,8 @@ import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 import Webcam from "react-webcam";
 import classes from './page.module.css'
 import { useRef, useEffect, useState } from 'react'
-import { drawMesh } from '@/components/drawmesh'
-import Feedbackstylist from "@/components/Feedbackstylist";
+import { drawMesh } from '../../components/drawmesh'
+import Feedbackstylist from "../../components/Feedbackstylist";
 
 
 const Page = () => {
@@ -26,6 +26,7 @@ const Page = () => {
         const ctx = canvasRef.current.getContext("2d");
         ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height)
         runFacemesh().then((response)=>{
+            console.log(response)
             changeLoading(false)
         });
         
@@ -34,18 +35,13 @@ const Page = () => {
     console.log(data);
 
     const runFacemesh = async () => {
-        // OLD MODEL
-        // const net = await facemesh.load({
-        //   inputResolution: { width: 640, height: 480 },
-        //   scale: 0.8,
-        // });
-        // NEW MODEL
+
         console.log("RAN FACE MESH")
+        
         const net = await facemesh.load(facemesh.SupportedPackages.mediapipeFacemesh);
-        // setInterval(() => {
+        
         detect(net);
-        // console.log(canvasRef.current.toDataURL());
-        // }, 100 );
+        
     };
 
     const detect = async (net) => {
@@ -83,6 +79,7 @@ const Page = () => {
                     const ctx = canvasRef.current.getContext("2d");
                     console.log('asds')
                     let returnedDrawMesh = 'aa';
+                    
                     requestAnimationFrame(() => { console.log('JAIII'); changeData(drawMesh(face, ctx)) });
 
                     console.log(canvasRef.current.toDataURL())

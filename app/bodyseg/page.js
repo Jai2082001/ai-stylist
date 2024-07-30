@@ -77,12 +77,7 @@ function App() {
       canvasRef.current.height = videoHeight;
 
       // Make Detections
-      // * One of (see documentation below):
-      // *   - net.segmentPerson
-      // *   - net.segmentPersonParts
-      // *   - net.segmentMultiPerson
-      // *   - net.segmentMultiPersonParts
-      // const person = await net.segmentPerson(video);
+      
       const person = await net.segmentPersonParts(video);
       console.log(person);
 

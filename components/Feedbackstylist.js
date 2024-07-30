@@ -4,7 +4,7 @@ import classes from './FeedbackStylist.module.css'
 import { FaceAlgo } from '../lib/faceScan'
 import { useEffect, useMemo, useState } from 'react'
 import FeedbackCard from './FeedbackCard.js'
-import LoadingGif from '@/public/LoadingScreen.gif'
+import LoadingGif from '../public/LoadingScreen.gif'
 import Image from 'next/image'
 import Loading from './Loading'
 const Feedbackstylist = ({ data, loading, changeLoading, changeData, changeCapture }) => {

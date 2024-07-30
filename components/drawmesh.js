@@ -2652,26 +2652,13 @@ let index = 0
 // Triangle drawing method
 const drawPath = (ctx, data, closePath) => {
     const region = new Path2D();
-    // let x1, x2, x3, y1, y2, y3;
-    // x1 = points[0][0]
-    // y1 = points[0][1]
-    // x2 = points[1][0]
-    // y2 = points[1][1]
-    // x3 = points[2][0]
-    // y3 = points[2][1]
 
-    // let area = 0.5 * ((x1 * y2) + (x2 * y3) + (x3 * y1) - (x1 * y3) - (x2 * y1) - (x3 * y2))
-
-    // if (area < 0) {
-    //     area = area * -1;
-    // }
     let points = [];
 
     data.map((item) => {
         points.push(item.coordinates);
     })
 
-    // console.log(points)
     region.moveTo(data[0].coordinates[0], data[0].coordinates[1]);
 
 
@@ -2819,10 +2806,11 @@ export const drawMesh = (predictions, ctx) => {
 
 
 
-                // ctx.fillText(i, x, y);
+                ctx.fillText(1, x, y);
                 ctx.arc(x, y, 1 /* radius */, 0, 3 * Math.PI);
                 ctx.fillStyle = "black";
                 ctx.fill();
+               
             }
             // // console.log(leftCheek1)
 
@@ -2845,4 +2833,44 @@ export const drawMesh = (predictions, ctx) => {
         'Right Eye': calculatePolygonArea(rightEyeFunctional),
         'Mouth': calculatePolygonArea(mouthFunctional)
     }
+};
+
+
+
+export const drawMeshFaceScan = (predictions, ctx) => {
+    
+    if (predictions.length > 0) {
+        predictions.forEach((prediction) => {
+            const keypoints = prediction.scaledMesh;
+            const indexPoints = [10, 338, 297, 332, 284, 251, 389, 356, 454, 323, 361]
+            console.log(keypoints)
+            let i;
+            ctx.beginPath();
+            ctx.font = '10px serif';
+
+            indexPoints.map((single)=>{
+                console.log(single)
+                const x = keypoints[single][0];
+                const y = keypoints[single][1];
+                console.log(x, y)
+                ctx.beginPath();
+                ctx.font = "5px serif";
+                ctx.fillText(1, x, y);
+                ctx.arc(x, y, 1 /* radius */, 0, 3 * Math.PI);
+                ctx.fillStyle = "black";
+                ctx.fill();
+                
+            })
+
+            
+
+
+            // // console.log(leftCheek1)
+
+            // return new Promise((res)=>{
+                
+            // })
+        });
+    }
+    
 };
