@@ -1,7 +1,7 @@
 // 'use client'
 import styles from './login.module.css'
 // import { addUsers } from '@/lib/actions';
-import Button from '@/components/LoginPage/LoginPage';
+import Button from '../../../components/LoginPage/LoginPage';
 
 
 

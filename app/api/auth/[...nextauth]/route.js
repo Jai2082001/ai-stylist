@@ -11,9 +11,7 @@ const handler = NextAuth({
                 password: { label: 'password', type: 'text', placeholder: 'Password' }
             },
             async authorize(credentials) {
-                
-
-                console.log(credentials);
+                console.log('cred', credentials);
 
                 return prisma.user.findFirst({
                     where: {
@@ -21,9 +19,11 @@ const handler = NextAuth({
                         password: credentials.password
                     }
                 }).then((response)=>{
-                    return {
+                    console.log(response)
+                    return {    
                         email: response.email                  
                     }
+                    
                 })
                
             },
@@ -33,7 +33,10 @@ const handler = NextAuth({
             clientId: process.env.GOOGLE_ID,
             clientSecret: process.env.GOOGLE_SECRET
         })
-    ]
+    ],
+    pages: {
+        signIn: '/auth/signin'
+    }
 })
 
 

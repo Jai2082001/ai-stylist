@@ -4,7 +4,7 @@ import Webcam from "react-webcam";
 import { drawMesh, drawMeshFaceScan } from '../../components/drawmesh'
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 
-export default function index() {
+export default function Index() {
     const webcamRef = useRef();
     const canvasRef = useRef();
 

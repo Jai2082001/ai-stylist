@@ -139,10 +139,10 @@ const Feedbackstylist = ({ data, loading, changeLoading, changeData, changeCaptu
                             <div className={classes.contentDiv}>
                                 <p style={{margin: '10px 0px'}}>Suggested Lens</p>
                                 <div className={classes.suggestDiv}>
-                                    {matchCheatList[info]['Lens'].map((item) => {
+                                    {matchCheatList[info]['Lens'].map((item, idx) => {
 
                                         return (
-                                            <FeedbackCard image={item} type={'Lens'}>
+                                            <FeedbackCard image={item} key={idx} type={'Lens'}>
                                                 </FeedbackCard>
                                         )
 
@@ -150,10 +150,10 @@ const Feedbackstylist = ({ data, loading, changeLoading, changeData, changeCaptu
                                 </div>
                                 <p style={{margin: '10px 0px'}}>Suggested Haircuts</p>
                                 <div className={classes.suggestDiv}>
-                                    {matchCheatList[info]['Hairstyle'].map((item) => {
+                                    {matchCheatList[info]['Hairstyle'].map((item, idx) => {
 
                                         return (
-                                            <FeedbackCard image={item} type={'Hairstyle'}>
+                                            <FeedbackCard image={item} key={idx} type={'Hairstyle'}>
                                             </FeedbackCard>
                                         )
 

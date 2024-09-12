@@ -78,7 +78,7 @@ const MatchingOutfits = () => {
                     {
                         outfits.map((singleRecord, idx) => {
                             return (
-                                <div className={classes.parDiv}>
+                                <div key={idx} className={classes.parDiv}>
                                     <p>Outfit Number {idx + 1}</p>
                                     <div className={classes.outfits}>
 
@@ -133,7 +133,7 @@ const MatchingOutfits = () => {
 
 
 
-                                            <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                                            <div key={idx} class="max-w-sm rounded overflow-hidden shadow-lg">
                                                 <img src={element.image} alt="Sunset in the mountains" />
 
                                                 <div clasName={classes.dominantColor} style={{ backgroundColor: `rgb(${element.dominantColors.red},${element.dominantColors.green}, ${element.dominantColors.blue})`, width: '20px', height: '20px' }} class="px-6 py-4">
@@ -155,7 +155,7 @@ const MatchingOutfits = () => {
                                         return (
 
 
-                                            <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                                            <div key={idx} class="max-w-sm rounded overflow-hidden shadow-lg">
                                                 <img src={element.image} alt="Sunset in the mountains" />
 
                                                 <div className={classes.dominantColor} style={{ backgroundColor: `rgb(${element.dominantColors.red},${element.dominantColors.green}, ${element.dominantColors.blue})`, height: '20px' }} class="px-6 py-4">
@@ -181,7 +181,7 @@ const MatchingOutfits = () => {
                                         return (
 
 
-                                            <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                                            <div key={idx} class="max-w-sm rounded overflow-hidden shadow-lg">
                                                 <img src={element.image} alt="Sunset in the mountains" />
                                                 <div className={classes.dominantColor} style={{ backgroundColor: `rgb(${element.dominantColors.red},${element.dominantColors.green}, ${element.dominantColors.blue})`, height: '20px' }} class="px-6 py-4">
 
@@ -204,7 +204,7 @@ const MatchingOutfits = () => {
                                         return (
 
 
-                                            <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                                            <div key={idx} class="max-w-sm rounded overflow-hidden shadow-lg">
                                                 <img class="w-full" src={element.image} alt="Sunset in the mountains" />
                                                 <div className={classes.dominantColor} style={{ backgroundColor: `rgb(${element.dominantColors.red},${element.dominantColors.green}, ${element.dominantColors.blue})`, height: '20px' }} class="px-6 py-4">
 
