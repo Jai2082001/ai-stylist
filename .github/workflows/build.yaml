@@ -31,7 +31,7 @@ jobs:
     - name: Verify Pushed Image
       run: docker pull jaideepgrover/vir:latest  # Replace with your Docker Hub username and repository
     # improved key
-    # 
+    # ada
     - name: Deploy to EC2
       uses: appleboy/ssh-action@master
       with:
