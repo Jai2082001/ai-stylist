@@ -4,7 +4,7 @@ import classes from './page.module.css'
 import { useRef } from 'react'
 import {addUser} from '../../lib/actions';
 
-const app =  () => {
+const App =  () => {
 
     const username = useRef();
     const name = useRef();
@@ -45,8 +45,8 @@ const app =  () => {
                 <div className={classes.subdiv}>
                     <button onClick={signup}>Sign up</button>
                 </div>
-            </div>
+      []      </div>
         </div>
     )
 }
-export default app;
+export default App;
