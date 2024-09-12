@@ -4,7 +4,7 @@ import classes from './page.module.css'
 import { useRef } from 'react'
 import {addUser} from '../../lib/actions';
 
-const app =  () => {
+const App =  () => {
 
     const username = useRef();
     const name = useRef();
@@ -49,4 +49,4 @@ const app =  () => {
         </div>
     )
 }
-export default app;
+export default App;
