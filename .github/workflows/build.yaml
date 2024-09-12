@@ -24,6 +24,7 @@ jobs:
       with:
         context: .
         file: ./docker/Dockerfile
+        # ads
         push: true
         tags: jaideepgrover/vir  # Replace with your Docker Hub username and repository
 
