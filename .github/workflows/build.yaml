@@ -42,4 +42,4 @@ jobs:
           sudo docker pull jaideepgrover/vir:latest
           sudo docker stop vir || true
           sudo docker rm vir || true
-          sudo docker run -d --name vir -p 3005:3000 jaideepgrover/vir:latest
+          sudo docker run -d --name vir -p 4000:3000 jaideepgrover/vir:latest
