@@ -1,7 +1,6 @@
 // 'use client'
 import styles from './login.module.css'
 // import { addUsers } from '@/lib/actions';
-import Button from '../../../components/LoginPage/LoginPage';
 
 
 
@@ -33,8 +32,8 @@ const Login = () => {
                         {/* <form action={addUsers}>
                         <button type='submit' >Sign in with google</button>
                         </form> */}
-
-                        <Button clickHandler={clickHandler}></Button>
+{/* 
+                        <Button clickHandler={clickHandler}></Button> */}
                         {/* <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}></StyledFirebaseAuth> */}
                     </div>
                 {/* </form> */}
