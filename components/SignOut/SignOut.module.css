@@ -1,0 +1,15 @@
+.deleteAccount{
+    background-color: red;
+    color: white;
+    width: 40%;
+    margin-top: 50px;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid black;
+    transition: 0.5s all ease-in-out;
+}
+.deleteAccount:hover{
+    cursor: pointer;
+    color: red;
+    background-color: white;
+}

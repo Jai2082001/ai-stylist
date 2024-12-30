@@ -10,7 +10,7 @@ const Feedback = ({ changeFeedback, data }) => {
 
 
     const [color, changeColor] = useState(`#000`);
-    const userData  = useSession();
+    const userData = useSession();
     console.log(userData)
     useEffect(() => {
         if (data) {
@@ -58,8 +58,10 @@ const Feedback = ({ changeFeedback, data }) => {
             {data &&
 
                 <div className={classes.modelParent}>
-                    <div>Here is the Identified features of if you want to make some changes please do or else register the wardrobe item.  </div>
-                    <img src={data.image} ></img>
+                    <div>
+                        <p className="text-sm text-gray-600 mb-2">Here are the identified features. Make changes if needed, or register the wardrobe item.</p>
+                        <img src={data.image} alt="Wardrobe item" className="w-full h-64 object-cover rounded-md" />
+                    </div>
                     <p>Identified Item</p>
                     <select ref={clothRef}>
                         <option selected={data.type.localeCompare('Trouser') == 0} value='Trouser'>Trouser</option>
@@ -68,11 +70,27 @@ const Feedback = ({ changeFeedback, data }) => {
                         <option selected={data.type.localeCompare('Pullover') == 0} value='Pullover'>Pullover</option>
                         <option selected={data.type.localeCompare('Coat') == 0} value='Coat'>Coat</option>
                     </select>
-                    <p>Identified Colors </p>
+                    <div>
+                        <label htmlFor="color-picker">Identified Color</label>
+                        <div className="flex items-center space-x-4">
+                            <input
+                                type="color"
+                                id="color-picker"
+                                value={color}
+                                onChange={colorCha}
+                                className="w-12 h-12 rounded-md border border-gray-300 cursor-pointer"
+                            />
+                            <div
+                                className="w-12 h-12 rounded-md border border-gray-300"
+                                style={{ backgroundColor: color }}
+                            ></div>
+                            <span className="text-sm text-gray-600 uppercase">{color}</span>
+                        </div>
+                    </div>
 
-                    <input type='color' value={color} onChange={colorCha} ></input>
-                    <br></br>
-                    <button onClick={registerBtn}>Register</button>
+                    <button onClick={registerBtn} className="bg-white hover:bg-black-700 text-black font-bold py-2 px-4 rounded">
+                        Register
+                    </button>
                 </div>
             }
         </div>

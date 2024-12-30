@@ -20,7 +20,7 @@ const Page = () => {
     const userData = useSession()
     const [data, changeData] = useState(false);
 
-
+    console.log(data)
     const asyncUseEffectFunc = async () => {
         changeLoading(true)
 

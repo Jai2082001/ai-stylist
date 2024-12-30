@@ -34,6 +34,7 @@
     "react-image-crop": "^11.0.5",
     "react-social-login-buttons": "^4.1.0",
     "react-webcam": "^5.2.0",
+    "three": "^0.169.0",
     "tls": "^0.0.1",
     "uuid": "^9.0.1"
   },
@@ -46,5 +47,3 @@
     "tailwindcss": "^3.4.3"
   }
 }
-
-

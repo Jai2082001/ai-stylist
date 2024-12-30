@@ -15,10 +15,10 @@ datasource db {
 
 model User {
   id           Int            @id @default(autoincrement())
-  username     String
+  googleid     String
+  profileImage String?
   email        String         @unique
   name         String?
-  password     String
   WardrobeItem WardrobeItem[]
   FaceScans    FaceScans[]
 }

@@ -1,20 +1,19 @@
 .navbarContainer{
     text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
 .navbarContainer button{
     padding: 10px;
     background-color: white;
-    outline: none;
-    border: none;
     cursor: pointer;
-    margin: 20px 0px;
-    
+    border: 1px solid black;
+    width: 33%;
+    transition: all ease-in-out 0.3s;
+}
+.navbarContainer button:hover{
+    background-color: black;
+    color: white;
 }
 
-.span1{
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    vertical-align:middle;
-    background-color: white;
-}

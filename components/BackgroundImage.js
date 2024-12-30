@@ -7,6 +7,7 @@ import img1 from './images/img1.jpg'
 import img2 from './images/img2.jpg'
 import img3 from './images/img3.jpg'
 import img4 from './images/img4.jpg'
+import AnimatedText from './AnimatedText'
 import Navbar from "./Navbar"
 
 
@@ -45,24 +46,22 @@ const Background = () => {
 
         <div className={classes.imgStyles} style={{ backgroundImage: `url(${imgArray[path].src})` }}>
             <div className={classes.overlay}></div>
-            <div className={classes.overlay1}>
 
-                <div className={classes.text2}>
+            {/* <div className={classes.text2}>
                     <p className={classes.assitant}> Your assitant</p>
                     <p className={classes.stylist}>Your stylist</p>
                     <p className={classes.friend}>Your Fashion Friend</p>
                     <p className={classes.viri}>This is viri</p>
                     <p className={classes.before}>.</p>
                 </div>
-                <Navbar></Navbar>
-                
                 {/* <div className={classes.imgBack} , width: '100%', height: '100%'}}> </div> */}
+            <div className={classes.text2}>
+                <AnimatedText>
 
-                <div className={classes.text1}>
-                    {/* <p>We are here to help you</p> */}
-                </div>
+                </AnimatedText>
+                Scroll Down To Try out our Product
             </div>
-        </div>  
+        </div>
     )
 
 }

@@ -2729,6 +2729,7 @@ export const drawMesh = (predictions, ctx) => {
             let nose = [22, 231, 120, 100, 142, 129, 98, 167, 164, 393, 327, 358, 371, 329, 349, 451, 252];
 
 
+
             ctx.beginPath();
             ctx.font = '5px serif';
 
@@ -2770,19 +2771,7 @@ export const drawMesh = (predictions, ctx) => {
             drawPath(ctx, leftEyeFunctional, true);
             drawPath(ctx, rightEyeFunctional, true);
             drawPath(ctx, noseFunctional, true);
-            console.log('RightCheek', calculatePolygonArea(rightCheekFunctional));
-            console.log('Right Jaw', calculatePolygonArea(rightJawlineFunctional));
-            console.log('Forehead', calculatePolygonArea(foreHeadFunctional));
-            console.log('Left Jawline', calculatePolygonArea(leftJawLineFunctional));
-            console.log('Left Cheek', calculatePolygonArea(leftCheekFunctional));
-            console.log('Nose', calculatePolygonArea(noseFunctional));
-            console.log('Left Eye', calculatePolygonArea(leftEyeFunctional));
-            console.log('Right Eye', calculatePolygonArea(rightEyeFunctional));
-            console.log('Mouth', calculatePolygonArea(mouthFunctional))
-
-
-
-
+     
 
 
 
@@ -2795,14 +2784,7 @@ export const drawMesh = (predictions, ctx) => {
                 ctx.font = "5px serif";
 
 
-                // if(i == 288 || i == 254 || i == 359 || i ==  356 || i == 393 || i == 287 ){
-                //     leftCheek2.push({coordinates: keypoints[i], index: i});
-                // }
-
-                // // if( i == 393 || i == 288 ||   i == 152 || i == 378 || i == 335){
-                // //     leftCheek1.push({coordinates: keypoints[i], index: i});
-                // // }
-
+               
 
 
 
@@ -2812,12 +2794,7 @@ export const drawMesh = (predictions, ctx) => {
                 ctx.fill();
                
             }
-            // // console.log(leftCheek1)
-
-            // // drawPath(ctx, leftCheek1, true )
-
-            // drawPath(ctx, leftCheek2, true )
-            // // drawPath(ctx, leftCheek1, true)
+          
 
 
         });

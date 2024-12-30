@@ -2,17 +2,25 @@
 
 import { useEffect, useState } from 'react'
 import classes from './page.module.css'
+import { useSession, signIn } from 'next-auth/react'
 import { displayWardrobe, dominantColorBasedOnId, MatchTheWardrobe } from '../../../lib/wardrobeactions'
-import { getServerSession } from 'next-auth'
 import { resolveValue } from 'react-hot-toast'
 
 const MatchingOutfits = () => {
+
+    const {data: session, status} = useSession();
+
+
 
     const [records, changeRecords] = useState(false);
     const [page, changePage] = useState('outfits');
     const [outfits, changeOutfits] = useState(false);
 
-
+    useEffect(()=>{
+        if(status == 'unauthenticated'){
+            signIn();
+        }
+    }, [status])
     useEffect(() => {
         const promise = asyncEffectFunction();
         promise.then((resolve) => {
