@@ -1,6 +1,16 @@
-.displayDiv{
+.displayDiv{    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+.subDisplayDiv{
     position: relative;
     width: 640px;
     height: 480px;
     overflow:hidden ;
+    border-radius: 20px;
 }

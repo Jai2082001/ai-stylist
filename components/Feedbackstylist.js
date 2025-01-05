@@ -7,8 +7,7 @@ import FeedbackCard from './FeedbackCard.js'
 import LoadingGif from '../public/LoadingScreen.gif'
 import Image from 'next/image'
 import Loading from './Loading'
-const Feedbackstylist = ({ data, loading, changeLoading, changeData, changeCapture }) => {
-    console.log(changeCapture)
+const Feedbackstylist = ({ data, loading, changeLoading}) => {
     let matchCheatList = {
         'Round':
         {
@@ -128,8 +127,7 @@ const Feedbackstylist = ({ data, loading, changeLoading, changeData, changeCaptu
                         <div className={classes.feedbackCardChild}>
                         <div className={classes.uiBtn} onClick={()=>{
                             changeInfo(false)
-                            changeCapture(false)
-                            changeData(false);
+                            window.location.reload();
 
                         }}>Close or Scan Again</div>
 

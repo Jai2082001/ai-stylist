@@ -5,20 +5,26 @@ import * as tf from '@tensorflow/tfjs';
 import * as faceLandmarksDetection from '@tensorflow-models/face-landmarks-detection';
 import * as THREE from 'three';
 import Webcam from "react-webcam";
-import { useSession,signIn } from 'next-auth/react';
+import { useSession, signIn } from 'next-auth/react';
 import createGlasses from '../../components/GlassesThreeJs/glasses';
 import classes from './page.module.css'
 import Image from 'next/image';
+import FeedbackStylist from '../../components/Feedbackstylist';
 import Outline from '../../components/images/outline (1).png';
+import { drawMesh } from '../../components/drawmesh';
+import Loading from '../../components/Loading';
 const FaceModel = () => {
     const canvasRef = useRef(null);
     const videoRef = useRef(null);
-    const {data: session, status} = useSession();
+    const { data: session, status } = useSession();
     // const [model, setModel] = useState([]);
     const [fileUpload, handleFileUpload] = useState(null);
     const [lensimg, setLensImage] = useState(false)
+    const [error, changeError] = useState(false);
     const [reload, setReload] = useState(false);
-
+    const [feedback, changeFeedback] = useState(false);
+    const [loading, changeLoading] = useState(false);
+    const [data, changeData] = useState(false)
 
 
     const fileUploadFunc = (ev) => {
@@ -35,14 +41,14 @@ const FaceModel = () => {
         }
     }
 
-    useEffect(()=>{
-        if(status == 'unauthenticated'){
+    useEffect(() => {
+        if (status == 'unauthenticated') {
             signIn()
         }
     }, [status])
 
-    useEffect(() => {
 
+    useEffect(() => {
 
         let model;
         let animationFrameId
@@ -55,7 +61,7 @@ const FaceModel = () => {
 
             const camera = new THREE.PerspectiveCamera(75, 640 / 480, 0.1, 1000);
             camera.position.z = 1;
-            camera.lookAt(0,0,0)
+            camera.lookAt(0, 0, 0)
 
 
 
@@ -76,7 +82,7 @@ const FaceModel = () => {
                 const detectFace = async () => {
                     if (model.length > 0 || model.length == undefined) {
 
-                        const scene = new THREE.Scene();
+                        let scene = new THREE.Scene();
 
                         const video = videoRef.current.video;
 
@@ -99,6 +105,29 @@ const FaceModel = () => {
                         let mesh;
                         if (predictions.length > 0) {
                             const landmarks = predictions[0].scaledMesh;
+                            let faceData = drawMesh(predictions);
+                            if ((faceData['Right Cheek'] < 2500) || (faceData['Left Cheek'] < 2500)) {
+                                changeError(true)
+                            } else {
+                                changeError(false)
+                            }
+
+                            setTimeout(() => {
+                                let faceData = drawMesh(predictions);
+                                if ((faceData['Right Cheek'] < 2500) || (faceData['Left Cheek'] < 2500)) {
+                                    changeError(true)
+                                } else {
+                                    changeError(false)
+                                }
+
+                                if (!error) {
+                                    changeFeedback(true);
+                                    changeData(faceData);
+                                    let stream = videoRef.current.stream;
+                                    const tracks = stream.getTracks();
+                                    tracks.forEach(track => track.stop());
+                                }
+                            }, 12000)
                             // let mesh = new THREE.Mesh();
                             if (lensimg) {
                                 const texture = new THREE.Texture(lensimg);
@@ -135,9 +164,9 @@ const FaceModel = () => {
                                     // leftTemple.rotation.z -= 0.3;
                                 } else if (index == 454) {
                                     rightTemple.position.set((x / 640) * 2 - 1, -(y / 480) * 2 + 1, 0)
-                                    rightTemple.rotation.x = 0.3
-                                    rightTemple.rotation.y = 0.3;
-                                    rightTemple.rotation.z = 2;
+                                    // rightTemple.rotation.x = 0.3
+                                    // rightTemple.rotation.y = 0.3;
+                                    // rightTemple.rotation.z = 2;
                                 }
                                 const landmarkGeometry = new THREE.SphereGeometry(0.005, 8, 8);
 
@@ -149,16 +178,16 @@ const FaceModel = () => {
 
                                 const landmarkMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
                                 const landmarkMesh = new THREE.Mesh(landmarkGeometry, landmarkMaterial);
-
-                                const axesHelper = new THREE.AxesHelper(3);
-                                scene.add(axesHelper);
+                                // Axes Helper
+                                // const axesHelper = new THREE.AxesHelper(3);
+                                // scene.add(axesHelper);
 
 
                                 const newMesh = new THREE.Mesh(landmarkGeometry, skinMaterial)
                                 landmarkMesh.position.copy(point);
                                 newMesh.position.copy(point);
                                 glassesgroup.add(leftFrame, rightFrame, leftTemple, rightTemple);
-                                scene.add(glassesgroup)
+                                // scene.add(glassesgroup)
                                 scene.add(landmarkMesh);
                                 if (mesh) {
                                     // setReload(prev => !prev);
@@ -205,7 +234,9 @@ const FaceModel = () => {
 
         return () => {
             cancelAnimationFrame(animationFrameId)
+            scene = null
         }
+    
 
 
     }, [lensimg]);
@@ -214,39 +245,44 @@ const FaceModel = () => {
         <>
 
             <div className={classes.displayDiv}>
-                <Webcam
-                    ref={videoRef}
-                    style={{
+                <h1 className='mb-5'>Try to keep your face in the frame, we are scanning your face to recommend you hairstyles and lenses</h1>
+                {error && <h3>Keep your face centered and in the picture</h3>}
+                <div className={classes.subDisplayDiv}>
+                    <Webcam
+                        ref={videoRef}
+                        style={{
+                            position: 'absolute',
+                            left: 0,
+                            right: 0,
+                            textAlign: "center",
+                            zIndex: 0,
+                            width: 640,
+                            height: 480,
+                        }}
+                    />
+                    <canvas ref={canvasRef}
+                        style={{
+                            position: 'absolute',
+                            left: 0,
+                            right: 0,
+                            textAlign: "center",
+                            zIndex: 100,
+                            width: 640,
+                            height: 480
+                        }}
+                    />
+                    <Image src={Outline} style={{
                         position: 'absolute',
-                        left: 0,
-                        right: 0,
-                        textAlign: "center",
-                        zIndex: 0,
-                        width: 640,
-                        height: 480,
-                    }}
-                />
-                <canvas ref={canvasRef}
-                    style={{
-                        position: 'absolute',
-                        left: 0,
-                        right: 0,
-                        textAlign: "center",
-                        zIndex: 100,
-                        width: 640,
-                        height: 480
-                    }}
-                />
-                <Image src={Outline} style={{
-                    position: 'absolute',
-                    left: 25,
-                    top: 50,
-                    zIndex: 101
-                }}></Image>
+                        left: 25,
+                        top: 50,
+                        zIndex: 101
+                    }}></Image>
+
+                </div>
+                {feedback && <FeedbackStylist data={data} loading={loading} changeLoading={changeLoading}></FeedbackStylist>}
+
             </div>
-            <div>
-                <input type='file' onChange={fileUploadFunc}></input>
-            </div>
+
         </>
 
     );

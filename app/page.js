@@ -16,11 +16,13 @@ export default function Home() {
 
   const router = useRouter();
   const buttonHandler=(e)=>{
+    console.log(e.target.id);
+
     if(e.target.id == 'wardrobe'){
       router.push('/ourservices/outfits');
     }else if(e.target.id == 'scan'){
       router.push('/ourservices/updatewardrobe');
-    }else{
+    }else if(e.target.id == 'face'){
       router.push('/newstylist')
     }
   }

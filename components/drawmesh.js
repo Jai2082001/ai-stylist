@@ -2714,6 +2714,7 @@ export const drawMesh = (predictions, ctx) => {
     if (predictions.length > 0) {
         predictions.forEach((prediction) => {
             const keypoints = prediction.scaledMesh;
+            
             let i;
             //  Draw Triangles
 
@@ -2730,8 +2731,8 @@ export const drawMesh = (predictions, ctx) => {
 
 
 
-            ctx.beginPath();
-            ctx.font = '5px serif';
+            // ctx.beginPath();
+            // ctx.font = '5px serif';
 
 
             rightCheek.forEach((index) => {
@@ -2762,38 +2763,38 @@ export const drawMesh = (predictions, ctx) => {
                 noseFunctional.push({ coordinates: keypoints[index], index: index });
             })
 
-            drawPath(ctx, rightCheekFunctional, true)
-            drawPath(ctx, rightJawlineFunctional, true)
-            drawPath(ctx, foreHeadFunctional, true);
-            drawPath(ctx, leftCheekFunctional, true);
-            drawPath(ctx, leftJawLineFunctional, true);
-            drawPath(ctx, mouthFunctional, true);
-            drawPath(ctx, leftEyeFunctional, true);
-            drawPath(ctx, rightEyeFunctional, true);
-            drawPath(ctx, noseFunctional, true);
+            // drawPath(ctx, rightCheekFunctional, true)
+            // drawPath(ctx, rightJawlineFunctional, true)
+            // drawPath(ctx, foreHeadFunctional, true);
+            // drawPath(ctx, leftCheekFunctional, true);
+            // drawPath(ctx, leftJawLineFunctional, true);
+            // drawPath(ctx, mouthFunctional, true);
+            // drawPath(ctx, leftEyeFunctional, true);
+            // drawPath(ctx, rightEyeFunctional, true);
+            // drawPath(ctx, noseFunctional, true);
      
 
 
 
-            for (let i = 0; i < keypoints.length; i++) {
-                const x = keypoints[i][0];
-                const y = keypoints[i][1];
+            // for (let i = 0; i < keypoints.length; i++) {
+            //     const x = keypoints[i][0];
+            //     const y = keypoints[i][1];
 
 
-                ctx.beginPath();
-                ctx.font = "5px serif";
+            //     ctx.beginPath();
+            //     ctx.font = "5px serif";
 
 
                
 
 
 
-                ctx.fillText(1, x, y);
-                ctx.arc(x, y, 1 /* radius */, 0, 3 * Math.PI);
-                ctx.fillStyle = "black";
-                ctx.fill();
+            //     ctx.fillText(1, x, y);
+            //     ctx.arc(x, y, 1 /* radius */, 0, 3 * Math.PI);
+            //     ctx.fillStyle = "black";
+            //     ctx.fill();
                
-            }
+            // }
           
 
 
