@@ -9,7 +9,6 @@ import Loading from '../../../components/Loading'
 import Feedback from '../../../components/FeedbackItem'
 import { useSession } from 'next-auth/react'
 import { Toaster } from 'react-hot-toast'
-
 const Page = () => {
 
     const [dataModel, changeDataModel] = useState(false)

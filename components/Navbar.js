@@ -15,7 +15,8 @@ const Navbar = () => {
         } else if (e.target.id == '1') {
             router.push('/intro')
         } else if (e.target.id == '3') {
-            router.push('/')
+            // router.push('')
+            window.location.assign('https://jaideepgrover.blog')
         } else {
             router.push('/profile')
         }

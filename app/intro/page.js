@@ -19,7 +19,7 @@ const Intro = () => {
                 <p>
                     What Makes Us Different?
                 </p>
-                <div className={styles.features}>
+                <div className={`${styles.features}`}>
 
                     <p>
                         💡 AI-Powered Insights<br></br>

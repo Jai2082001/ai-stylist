@@ -1,7 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Saira+Stencil+One);
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Base styles using relative units */
 .imgStyles {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background-size: cover;
     background-position: center;
@@ -13,12 +15,10 @@
     transition: 0.5s all ease-in-out;
 }
 
-.imgBack {}
-
 .overlay {
     background-color: rgba(0, 0, 0, 0.71);
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     opacity: 0.3;
     position: absolute;
     top: 0;
@@ -26,57 +26,55 @@
     z-index: 0;
 }
 
-
-
 .text1 {
-    margin-top: 350px;
+    margin-top: clamp(200px, 35vh, 350px);
     text-align: center;
-    font-size: 50px;
+    font-size: clamp(2rem, 5vw, 50px);
 }
 
 .text2 {
     position: absolute;
-    left: 25%;
+    width: 90%;
+    max-width: 800px;
+    left: 50%;
     top: 35%;
+    transform: translateX(-50%);
     color: white;
     font-family: 'Poppins', serif;
     text-align: center;
 }
 
-
-.text2 {
-    width: 800px;
-}
-
 .text1 .styledText {
-    width: 100px;
-    height: 800px;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    min-height: 200px;
     background: none;
     position: relative;
     font-family: "Saira Stencil One", cursive !important;
 }
 
 .styledText video {
-    /* position: absolute;
-    top: 0;
-    left: 0; */
-    width: 200px;
-    height: 200px;
+    width: clamp(150px, 20vw, 200px);
+    height: auto;
+    aspect-ratio: 1;
     object-fit: cover;
 }
 
 .styledText h2 {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 200px;
-    height: 200px;
+    width: clamp(150px, 20vw, 200px);
+    height: auto;
+    aspect-ratio: 1;
     margin: 0;
     font-weight: 400 !important;
-    font-size: 50px !important;
+    font-size: clamp(2rem, 5vw, 50px) !important;
     text-transform: uppercase;
     background-color: #ffffff !important;
     mix-blend-mode: screen;
@@ -84,23 +82,65 @@
 
 @keyframes move {
     25% {
-        transform: translatey(-5.8vmin);
+        transform: translateY(-5.8vh);
         opacity: 1;
     }
-
     50% {
-        transform: translatey(-20vmin);
+        transform: translateY(-20vh);
     }
-
     75% {
-        transform: translatey(-31.5vmin);
+        transform: translateY(-31.5vh);
     }
-
-    90%{
-        transform: translatey(-51.5vmin);
-
+    90% {
+        transform: translateY(-51.5vh);
     }
-    100%{
-        transform: translatey();
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Media Queries for different screen sizes */
+@media screen and (max-width: 768px) {
+    .text2 {
+        top: 30%;
+        width: 85%;
+    }
+    
+    .text1 {
+        margin-top: 25vh;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .text2 {
+        top: 25%;
+        width: 90%;
+    }
+    
+    .styledText video,
+    .styledText h2 {
+        width: 150px;
+    }
+}
+
+/* For very small screens */
+@media screen and (max-width: 320px) {
+    .text1 {
+        margin-top: 20vh;
+    }
+    
+    .text2 {
+        top: 20%;
+    }
+}
+
+/* For landscape orientation */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+    .text1 {
+        margin-top: 15vh;
+    }
+    
+    .text2 {
+        top: 20%;
     }
 }

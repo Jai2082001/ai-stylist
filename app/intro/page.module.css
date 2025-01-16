@@ -48,3 +48,16 @@
     background-color: black;
     color: white;
 }
+@media screen and (max-width: 665px) {
+    .features{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    
+    }
+    .features p{
+        width: 100%;
+    }
+}
